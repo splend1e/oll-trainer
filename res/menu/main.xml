@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/action_next"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_go"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="101"
+        android:showAsAction="never"
+        android:title="Settings"/>
+    
+    <item
+        android:id="@+id/action_about_dev"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+        android:title="About Developer"/>
+    
+</menu>
