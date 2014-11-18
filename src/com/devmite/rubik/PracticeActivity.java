@@ -3,8 +3,6 @@ package com.devmite.rubik;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.devmite.rubik.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,15 +10,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class StopwatchActivity extends Activity implements OnClickListener {
+public class PracticeActivity extends Activity implements OnClickListener {
 
 	final int MSG_START_TIMER = 0;
 	final int MSG_STOP_TIMER = 1;
@@ -118,6 +114,9 @@ public class StopwatchActivity extends Activity implements OnClickListener {
 			
 			algoSolveText = (TextView) findViewById(R.id.solveAlgoText);
 			algoSolveText.setText(solve[arrayPos.get(rand)]);
+		} else {
+			algoScrambleText.setTextSize(algoScrambleText.getTextSize()+4);
+			imageContent.setVisibility(ImageView.GONE);
 		}
 		
 		secTextView = (TextView) findViewById(R.id.timeSecond);
@@ -138,7 +137,7 @@ public class StopwatchActivity extends Activity implements OnClickListener {
 			if (isStarted){
 				if (isNext){
 					String key = getResources().getString(R.string.positions);
-					Intent intent = new Intent(this, StopwatchActivity.class);
+					Intent intent = new Intent(this, PracticeActivity.class);
 					intent.putExtra(key, arrayPos);
 					
 					int[] arrayImg = new int[] { R.drawable.oll_1, R.drawable.oll_2,

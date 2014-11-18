@@ -150,7 +150,7 @@ public class MainActivity extends Activity {
 					Toast.LENGTH_LONG).show();
 		} else {
 			String key = getResources().getString(R.string.positions);
-			Intent intent = new Intent(this, StopwatchActivity.class);
+			Intent intent = new Intent(this, PracticeActivity.class);
 			intent.putExtra(key, arrayPos);
 			intent.putExtra("arrayImg", arrayImg);
 			startActivity(intent);

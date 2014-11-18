@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.devmite.rubik.StopwatchActivity"
+            android:name="com.devmite.rubik.PracticeActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
