@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/action_clear_algo_history"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="Clear this algorithm history "/>
+    
+    <item
+        android:id="@+id/action_clear_all_history"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="Clear all history "/>
+</menu>

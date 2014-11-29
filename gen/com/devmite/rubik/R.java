@@ -9,10 +9,145 @@ package com.devmite.rubik;
 
 public final class R {
     public static final class array {
-        public static final int algorithms_scramble=0x7f070001;
-        public static final int algorithms_solve=0x7f070000;
+        public static final int algorithms_scramble=0x7f090001;
+        public static final int algorithms_solve=0x7f090000;
     }
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int barAxisColor=0x7f010008;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int barShowAxis=0x7f01000a;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int barShowAxisLabel=0x7f01000b;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int barShowPopup=0x7f01000d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int barShowText=0x7f01000c;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int lineAxisColor=0x7f010003;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int lineBackground=0x7f010007;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int lineStrokeColor=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int lineStrokeSpacing=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int lineStrokeWidth=0x7f010004;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int lineUseDip=0x7f010006;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int orientation=0x7f010009;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int pieInnerCircleRatio=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int pieSlicePadding=0x7f010001;
+    }
+    public static final class color {
+        public static final int blue=0x7f060001;
+        public static final int green=0x7f060003;
+        public static final int green_light=0x7f060004;
+        public static final int orange=0x7f060005;
+        public static final int purple=0x7f060007;
+        public static final int red=0x7f060000;
+        public static final int transparent_blue=0x7f060002;
+        public static final int transparent_orange=0x7f060006;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -21,8 +156,9 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
+        public static final int default_margin=0x7f070002;
     }
     public static final class drawable {
         public static final int ab_background_textured_rubik=0x7f020000;
@@ -37,141 +173,160 @@ public final class R {
         public static final int btn_cab_done_rubik=0x7f020009;
         public static final int cab_background_bottom_rubik=0x7f02000a;
         public static final int cab_background_top_rubik=0x7f02000b;
-        public static final int go=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
-        public static final int list_focused_rubik=0x7f02000e;
-        public static final int list_pressed_rubik=0x7f02000f;
-        public static final int menu_dropdown_panel_rubik=0x7f020010;
-        public static final int oll_1=0x7f020011;
-        public static final int oll_10=0x7f020012;
-        public static final int oll_11=0x7f020013;
-        public static final int oll_12=0x7f020014;
-        public static final int oll_13=0x7f020015;
-        public static final int oll_14=0x7f020016;
-        public static final int oll_15=0x7f020017;
-        public static final int oll_16=0x7f020018;
-        public static final int oll_17=0x7f020019;
-        public static final int oll_18=0x7f02001a;
-        public static final int oll_19=0x7f02001b;
-        public static final int oll_2=0x7f02001c;
-        public static final int oll_20=0x7f02001d;
-        public static final int oll_21=0x7f02001e;
-        public static final int oll_22=0x7f02001f;
-        public static final int oll_23=0x7f020020;
-        public static final int oll_24=0x7f020021;
-        public static final int oll_25=0x7f020022;
-        public static final int oll_26=0x7f020023;
-        public static final int oll_27=0x7f020024;
-        public static final int oll_28=0x7f020025;
-        public static final int oll_29=0x7f020026;
-        public static final int oll_3=0x7f020027;
-        public static final int oll_30=0x7f020028;
-        public static final int oll_31=0x7f020029;
-        public static final int oll_32=0x7f02002a;
-        public static final int oll_33=0x7f02002b;
-        public static final int oll_34=0x7f02002c;
-        public static final int oll_35=0x7f02002d;
-        public static final int oll_36=0x7f02002e;
-        public static final int oll_37=0x7f02002f;
-        public static final int oll_38=0x7f020030;
-        public static final int oll_39=0x7f020031;
-        public static final int oll_4=0x7f020032;
-        public static final int oll_40=0x7f020033;
-        public static final int oll_41=0x7f020034;
-        public static final int oll_42=0x7f020035;
-        public static final int oll_43=0x7f020036;
-        public static final int oll_44=0x7f020037;
-        public static final int oll_45=0x7f020038;
-        public static final int oll_46=0x7f020039;
-        public static final int oll_47=0x7f02003a;
-        public static final int oll_48=0x7f02003b;
-        public static final int oll_49=0x7f02003c;
-        public static final int oll_5=0x7f02003d;
-        public static final int oll_50=0x7f02003e;
-        public static final int oll_51=0x7f02003f;
-        public static final int oll_52=0x7f020040;
-        public static final int oll_53=0x7f020041;
-        public static final int oll_54=0x7f020042;
-        public static final int oll_55=0x7f020043;
-        public static final int oll_56=0x7f020044;
-        public static final int oll_57=0x7f020045;
-        public static final int oll_6=0x7f020046;
-        public static final int oll_7=0x7f020047;
-        public static final int oll_8=0x7f020048;
-        public static final int oll_9=0x7f020049;
-        public static final int oll_step=0x7f02004a;
-        public static final int pic=0x7f02004b;
-        public static final int progress_bg_rubik=0x7f02004c;
-        public static final int progress_horizontal_rubik=0x7f02004d;
-        public static final int progress_primary_rubik=0x7f02004e;
-        public static final int progress_secondary_rubik=0x7f02004f;
-        public static final int red_button=0x7f020050;
-        public static final int selectable_background_rubik=0x7f020051;
-        public static final int spinner_ab_default_rubik=0x7f020052;
-        public static final int spinner_ab_disabled_rubik=0x7f020053;
-        public static final int spinner_ab_focused_rubik=0x7f020054;
-        public static final int spinner_ab_pressed_rubik=0x7f020055;
-        public static final int spinner_background_ab_rubik=0x7f020056;
-        public static final int tab_indicator_ab_rubik=0x7f020057;
-        public static final int tab_selected_focused_rubik=0x7f020058;
-        public static final int tab_selected_pressed_rubik=0x7f020059;
-        public static final int tab_selected_rubik=0x7f02005a;
-        public static final int tab_unselected_focused_rubik=0x7f02005b;
-        public static final int tab_unselected_pressed_rubik=0x7f02005c;
-        public static final int tab_unselected_rubik=0x7f02005d;
+        public static final int cool_gradient=0x7f02000c;
+        public static final int go=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
+        public static final int list_focused_rubik=0x7f02000f;
+        public static final int list_pressed_rubik=0x7f020010;
+        public static final int menu_dropdown_panel_rubik=0x7f020011;
+        public static final int oll_1=0x7f020012;
+        public static final int oll_10=0x7f020013;
+        public static final int oll_11=0x7f020014;
+        public static final int oll_12=0x7f020015;
+        public static final int oll_13=0x7f020016;
+        public static final int oll_14=0x7f020017;
+        public static final int oll_15=0x7f020018;
+        public static final int oll_16=0x7f020019;
+        public static final int oll_17=0x7f02001a;
+        public static final int oll_18=0x7f02001b;
+        public static final int oll_19=0x7f02001c;
+        public static final int oll_2=0x7f02001d;
+        public static final int oll_20=0x7f02001e;
+        public static final int oll_21=0x7f02001f;
+        public static final int oll_22=0x7f020020;
+        public static final int oll_23=0x7f020021;
+        public static final int oll_24=0x7f020022;
+        public static final int oll_25=0x7f020023;
+        public static final int oll_26=0x7f020024;
+        public static final int oll_27=0x7f020025;
+        public static final int oll_28=0x7f020026;
+        public static final int oll_29=0x7f020027;
+        public static final int oll_3=0x7f020028;
+        public static final int oll_30=0x7f020029;
+        public static final int oll_31=0x7f02002a;
+        public static final int oll_32=0x7f02002b;
+        public static final int oll_33=0x7f02002c;
+        public static final int oll_34=0x7f02002d;
+        public static final int oll_35=0x7f02002e;
+        public static final int oll_36=0x7f02002f;
+        public static final int oll_37=0x7f020030;
+        public static final int oll_38=0x7f020031;
+        public static final int oll_39=0x7f020032;
+        public static final int oll_4=0x7f020033;
+        public static final int oll_40=0x7f020034;
+        public static final int oll_41=0x7f020035;
+        public static final int oll_42=0x7f020036;
+        public static final int oll_43=0x7f020037;
+        public static final int oll_44=0x7f020038;
+        public static final int oll_45=0x7f020039;
+        public static final int oll_46=0x7f02003a;
+        public static final int oll_47=0x7f02003b;
+        public static final int oll_48=0x7f02003c;
+        public static final int oll_49=0x7f02003d;
+        public static final int oll_5=0x7f02003e;
+        public static final int oll_50=0x7f02003f;
+        public static final int oll_51=0x7f020040;
+        public static final int oll_52=0x7f020041;
+        public static final int oll_53=0x7f020042;
+        public static final int oll_54=0x7f020043;
+        public static final int oll_55=0x7f020044;
+        public static final int oll_56=0x7f020045;
+        public static final int oll_57=0x7f020046;
+        public static final int oll_6=0x7f020047;
+        public static final int oll_7=0x7f020048;
+        public static final int oll_8=0x7f020049;
+        public static final int oll_9=0x7f02004a;
+        public static final int oll_step=0x7f02004b;
+        public static final int pic=0x7f02004c;
+        public static final int popup_black=0x7f02004d;
+        public static final int progress_bg_rubik=0x7f02004e;
+        public static final int progress_horizontal_rubik=0x7f02004f;
+        public static final int progress_primary_rubik=0x7f020050;
+        public static final int progress_secondary_rubik=0x7f020051;
+        public static final int red_button=0x7f020052;
+        public static final int selectable_background_rubik=0x7f020053;
+        public static final int spinner_ab_default_rubik=0x7f020054;
+        public static final int spinner_ab_disabled_rubik=0x7f020055;
+        public static final int spinner_ab_focused_rubik=0x7f020056;
+        public static final int spinner_ab_pressed_rubik=0x7f020057;
+        public static final int spinner_background_ab_rubik=0x7f020058;
+        public static final int tab_indicator_ab_rubik=0x7f020059;
+        public static final int tab_selected_focused_rubik=0x7f02005a;
+        public static final int tab_selected_pressed_rubik=0x7f02005b;
+        public static final int tab_selected_rubik=0x7f02005c;
+        public static final int tab_unselected_focused_rubik=0x7f02005d;
+        public static final int tab_unselected_pressed_rubik=0x7f02005e;
+        public static final int tab_unselected_rubik=0x7f02005f;
     }
     public static final class id {
-        public static final int ButtonStartStop=0x7f0a0009;
-        public static final int RelativeLayout1=0x7f0a0012;
-        public static final int action_about_dev=0x7f0a0018;
-        public static final int action_next=0x7f0a0016;
-        public static final int action_settings=0x7f0a0017;
-        public static final int cb1=0x7f0a0015;
-        public static final int descTextView=0x7f0a0014;
-        public static final int imageContent=0x7f0a0006;
-        public static final int img=0x7f0a0011;
-        public static final int linearLayout1=0x7f0a0003;
-        public static final int linearLayout2=0x7f0a000a;
-        public static final int listview=0x7f0a0002;
-        public static final int outer=0x7f0a0010;
-        public static final int scrambleAlgoText=0x7f0a0005;
-        public static final int scrambleAlgoTitle=0x7f0a0004;
-        public static final int separator=0x7f0a000c;
-        public static final int separator2=0x7f0a000e;
-        public static final int solveAlgoText=0x7f0a0008;
-        public static final int solveAlgoTitle=0x7f0a0007;
-        public static final int textView1=0x7f0a0000;
-        public static final int timeMili=0x7f0a000f;
-        public static final int timeMin=0x7f0a000b;
-        public static final int timeSecond=0x7f0a000d;
-        public static final int title=0x7f0a0013;
-        public static final int wwwDevmite=0x7f0a0001;
+        public static final int ButtonStartStop=0x7f05000e;
+        public static final int RelativeLayout1=0x7f050017;
+        public static final int action_about_dev=0x7f050021;
+        public static final int action_clear_algo_history=0x7f05001b;
+        public static final int action_clear_all_history=0x7f05001c;
+        public static final int action_deselect_all=0x7f05001e;
+        public static final int action_history=0x7f050022;
+        public static final int action_next=0x7f05001f;
+        public static final int action_select_all=0x7f05001d;
+        public static final int action_settings=0x7f050020;
+        public static final int bargraph=0x7f050004;
+        public static final int cb1=0x7f05001a;
+        public static final int descTextView=0x7f050019;
+        public static final int horizontal=0x7f050000;
+        public static final int imageContent=0x7f05000b;
+        public static final int img=0x7f050016;
+        public static final int linearLayout1=0x7f050008;
+        public static final int linearLayout2=0x7f05000f;
+        public static final int listview=0x7f050007;
+        public static final int outer=0x7f050015;
+        public static final int scrambleAlgoText=0x7f05000a;
+        public static final int scrambleAlgoTitle=0x7f050009;
+        public static final int separator=0x7f050011;
+        public static final int separator2=0x7f050013;
+        public static final int solveAlgoText=0x7f05000d;
+        public static final int solveAlgoTitle=0x7f05000c;
+        public static final int textBest=0x7f050005;
+        public static final int textLabelGraph=0x7f050006;
+        public static final int textView1=0x7f050002;
+        public static final int timeMili=0x7f050014;
+        public static final int timeMin=0x7f050010;
+        public static final int timeSecond=0x7f050012;
+        public static final int title=0x7f050018;
+        public static final int vertical=0x7f050001;
+        public static final int wwwDevmite=0x7f050003;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_stopwatch=0x7f030002;
-        public static final int listview_layout=0x7f030003;
+        public static final int activity_bargraph=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_stopwatch=0x7f030003;
+        public static final int listview_layout=0x7f030004;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
+        public static final int graph_menu=0x7f0b0000;
+        public static final int main=0x7f0b0001;
+        public static final int practice_menu=0x7f0b0002;
     }
     public static final class string {
-        public static final int action_go=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
-        public static final int next_random=0x7f060005;
-        public static final int please_choose=0x7f060006;
-        public static final int positions=0x7f060007;
-        public static final int show_solving=0x7f060008;
-        public static final int start=0x7f060003;
-        public static final int stop=0x7f060004;
+        public static final int action_go=0x7f080001;
+        public static final int algo_num=0x7f08000b;
+        public static final int algo_type=0x7f08000c;
+        public static final int app_name=0x7f080000;
+        public static final int deselect_all=0x7f080008;
+        public static final int hello_world=0x7f080002;
+        public static final int next_random=0x7f080005;
+        public static final int please_choose=0x7f080006;
+        public static final int positions=0x7f080009;
+        public static final int select_all=0x7f080007;
+        public static final int show_solving=0x7f08000a;
+        public static final int start=0x7f080003;
+        public static final int stop=0x7f080004;
     }
     public static final class style {
-        public static final int ActionBar_Solid_Rubik=0x7f080004;
-        public static final int ActionBar_Transparent_Rubik=0x7f080005;
-        public static final int ActionBarTabStyle_Rubik=0x7f080008;
-        public static final int ActionButton_CloseMode_Rubik=0x7f08000b;
+        public static final int ActionBar_Solid_Rubik=0x7f0a0004;
+        public static final int ActionBar_Transparent_Rubik=0x7f0a0005;
+        public static final int ActionBarTabStyle_Rubik=0x7f0a0008;
+        public static final int ActionButton_CloseMode_Rubik=0x7f0a000b;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -195,22 +350,296 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
-        public static final int DropDownListView_Rubik=0x7f080007;
-        public static final int DropDownNav_Rubik=0x7f080009;
-        public static final int PopupMenu_Rubik=0x7f080006;
-        public static final int ProgressBar_Rubik=0x7f08000a;
-        public static final int Theme_Rubik=0x7f080003;
+        public static final int AppTheme=0x7f0a0001;
+        public static final int DropDownListView_Rubik=0x7f0a0007;
+        public static final int DropDownNav_Rubik=0x7f0a0009;
+        public static final int PopupMenu_Rubik=0x7f0a0006;
+        public static final int ProgressBar_Rubik=0x7f0a000a;
+        public static final int Theme_Rubik=0x7f0a0003;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Rubik_Widget=0x7f08000c;
-        public static final int button_text=0x7f080002;
+        public static final int Theme_Rubik_Widget=0x7f0a000c;
+        public static final int button_text=0x7f0a0002;
     }
     public static final class xml {
         public static final int settings=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a BarGraph.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #BarGraph_barAxisColor com.devmite.rubik:barAxisColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #BarGraph_barShowAxis com.devmite.rubik:barShowAxis}</code></td><td></td></tr>
+           <tr><td><code>{@link #BarGraph_barShowAxisLabel com.devmite.rubik:barShowAxisLabel}</code></td><td></td></tr>
+           <tr><td><code>{@link #BarGraph_barShowPopup com.devmite.rubik:barShowPopup}</code></td><td></td></tr>
+           <tr><td><code>{@link #BarGraph_barShowText com.devmite.rubik:barShowText}</code></td><td></td></tr>
+           <tr><td><code>{@link #BarGraph_orientation com.devmite.rubik:orientation}</code></td><td></td></tr>
+           </table>
+           @see #BarGraph_barAxisColor
+           @see #BarGraph_barShowAxis
+           @see #BarGraph_barShowAxisLabel
+           @see #BarGraph_barShowPopup
+           @see #BarGraph_barShowText
+           @see #BarGraph_orientation
+         */
+        public static final int[] BarGraph = {
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#barAxisColor}
+          attribute's value can be found in the {@link #BarGraph} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:barAxisColor
+        */
+        public static final int BarGraph_barAxisColor = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#barShowAxis}
+          attribute's value can be found in the {@link #BarGraph} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:barShowAxis
+        */
+        public static final int BarGraph_barShowAxis = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#barShowAxisLabel}
+          attribute's value can be found in the {@link #BarGraph} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:barShowAxisLabel
+        */
+        public static final int BarGraph_barShowAxisLabel = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#barShowPopup}
+          attribute's value can be found in the {@link #BarGraph} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:barShowPopup
+        */
+        public static final int BarGraph_barShowPopup = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#barShowText}
+          attribute's value can be found in the {@link #BarGraph} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:barShowText
+        */
+        public static final int BarGraph_barShowText = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#orientation}
+          attribute's value can be found in the {@link #BarGraph} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:orientation
+        */
+        public static final int BarGraph_orientation = 1;
+        /** Attributes that can be used with a LineGraph.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #LineGraph_lineAxisColor com.devmite.rubik:lineAxisColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #LineGraph_lineBackground com.devmite.rubik:lineBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #LineGraph_lineStrokeColor com.devmite.rubik:lineStrokeColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #LineGraph_lineStrokeSpacing com.devmite.rubik:lineStrokeSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #LineGraph_lineStrokeWidth com.devmite.rubik:lineStrokeWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #LineGraph_lineUseDip com.devmite.rubik:lineUseDip}</code></td><td></td></tr>
+           </table>
+           @see #LineGraph_lineAxisColor
+           @see #LineGraph_lineBackground
+           @see #LineGraph_lineStrokeColor
+           @see #LineGraph_lineStrokeSpacing
+           @see #LineGraph_lineStrokeWidth
+           @see #LineGraph_lineUseDip
+         */
+        public static final int[] LineGraph = {
+            0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005,
+            0x7f010006, 0x7f010007
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#lineAxisColor}
+          attribute's value can be found in the {@link #LineGraph} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:lineAxisColor
+        */
+        public static final int LineGraph_lineAxisColor = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#lineBackground}
+          attribute's value can be found in the {@link #LineGraph} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:lineBackground
+        */
+        public static final int LineGraph_lineBackground = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#lineStrokeColor}
+          attribute's value can be found in the {@link #LineGraph} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:lineStrokeColor
+        */
+        public static final int LineGraph_lineStrokeColor = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#lineStrokeSpacing}
+          attribute's value can be found in the {@link #LineGraph} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:lineStrokeSpacing
+        */
+        public static final int LineGraph_lineStrokeSpacing = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#lineStrokeWidth}
+          attribute's value can be found in the {@link #LineGraph} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:lineStrokeWidth
+        */
+        public static final int LineGraph_lineStrokeWidth = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#lineUseDip}
+          attribute's value can be found in the {@link #LineGraph} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:lineUseDip
+        */
+        public static final int LineGraph_lineUseDip = 4;
+        /** Attributes that can be used with a PieGraph.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PieGraph_pieInnerCircleRatio com.devmite.rubik:pieInnerCircleRatio}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieGraph_pieSlicePadding com.devmite.rubik:pieSlicePadding}</code></td><td></td></tr>
+           </table>
+           @see #PieGraph_pieInnerCircleRatio
+           @see #PieGraph_pieSlicePadding
+         */
+        public static final int[] PieGraph = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#pieInnerCircleRatio}
+          attribute's value can be found in the {@link #PieGraph} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:pieInnerCircleRatio
+        */
+        public static final int PieGraph_pieInnerCircleRatio = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.devmite.rubik.R.attr#pieSlicePadding}
+          attribute's value can be found in the {@link #PieGraph} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:pieSlicePadding
+        */
+        public static final int PieGraph_pieSlicePadding = 1;
+    };
 }

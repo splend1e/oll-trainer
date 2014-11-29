@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/cool_gradient"
     android:gravity="center|fill_horizontal" >
 
     <TextView
@@ -9,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/wwwDevmite"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="48dp"
+        android:textColor="#11A0CF"
         android:gravity="center_horizontal"
         android:padding="14dp"
         android:text="Devmite is an independent developer team from Jakarta consisted of 3 individuals who love to talk about app ideas over a coffee or meal. One day they decided to get their asses up and get shit done."

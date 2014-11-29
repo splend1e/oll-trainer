@@ -28,7 +28,8 @@ public class MainActivity extends Activity {
 	ArrayList<Integer> arrayPos = new ArrayList<Integer>();
 	List<ItemAlgorithm> listItems = new ArrayList<ItemAlgorithm>();
 	int[] arrayImg;
-
+	MainListAdapter adapter;
+	
 	private void populateData() {
 		String[] algorithms = getResources().getStringArray(
 				R.array.algorithms_solve);
@@ -70,7 +71,7 @@ public class MainActivity extends Activity {
 	
 		ListView listView = (ListView) findViewById(R.id.listview);
 
-		MainListAdapter adapter = new MainListAdapter(this, listItems);
+		adapter = new MainListAdapter(this, listItems);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -117,16 +118,28 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
+		Intent i;
+		
 		switch (item.getItemId()) {
+		case R.id.action_select_all:
+			selectAll();
+			break;
+		case R.id.action_deselect_all:
+			deselectAll();
+			break;
 		case R.id.action_next:
 			actionNext();
 			return true;
 		case R.id.action_settings:
-			Intent i = new Intent(this, UserSettingsActivity.class);
+			i = new Intent(this, UserSettingsActivity.class);
             startActivityForResult(i, 1);
             break;
 		case R.id.action_about_dev:
 			i = new Intent(this, AboutDevActivity.class);
+			startActivity(i);
+			break;
+		case R.id.action_history:
+			i = new Intent(this, GraphActivity.class);
 			startActivity(i);
 			break;
 		default:
@@ -155,5 +168,19 @@ public class MainActivity extends Activity {
 			intent.putExtra("arrayImg", arrayImg);
 			startActivity(intent);
 		}
+	}
+	
+	private void selectAll() {
+		for (int i = 0; i < TOTAL_DATA; i++) {
+			listItems.get(i).setCb1(true);
+		}
+		adapter.notifyDataSetChanged();
+	}
+	
+	private void deselectAll() {
+		for (int i = 0; i < TOTAL_DATA; i++) {
+			listItems.get(i).setCb1(false);
+		}
+		adapter.notifyDataSetChanged();
 	}
 }

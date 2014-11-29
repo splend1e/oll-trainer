@@ -27,6 +27,10 @@ public class MainListAdapter extends BaseAdapter {
 		this.mList = mListe;
 	}
 
+	public List<ItemAlgorithm> getmList() {
+		return mList;
+	}
+	
 	@Override
 	public int getCount() {
 		return mList.size();
