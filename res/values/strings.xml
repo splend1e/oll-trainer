@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">OLL Trainer</string>
+    <string name="AD_UNIT_ID">ca-app-pub-9410555971413444/6629160418ca-app-pub-9410555971413444/6629160418</string>
+    
     <string name="action_go">GO</string>
     <string name="hello_world">Hello world!</string>
     <string name="start">Start</string>

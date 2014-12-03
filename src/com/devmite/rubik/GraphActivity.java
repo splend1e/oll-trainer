@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devmite.rubik.database.MySQLiteHelper;
-import com.devmite.rubik.database.Record;
+import com.devmite.rubik.model.Record;
 import com.echo.holographlibrary.Bar;
 import com.echo.holographlibrary.BarGraph;
 import com.echo.holographlibrary.BarGraph.OnBarClickedListener;
@@ -51,7 +51,7 @@ public class GraphActivity extends Activity {
 		lastFiveDate = new String[NUM_RECORD];
 
 		MySQLiteHelper sqlite = new MySQLiteHelper(this);
-		List<Record> list = sqlite.getRecords(MySQLiteHelper.OLL, algoNum);
+		List<Record> list = sqlite.selectRecords(MySQLiteHelper.OLL, algoNum);
 
 		TextView textLabelGraph = (TextView) findViewById(R.id.textLabelGraph);
 

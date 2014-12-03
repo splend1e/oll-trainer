@@ -1,4 +1,4 @@
-package com.devmite.rubik.database;
+package com.devmite.rubik.model;
 
 public class Record {
 	private int id;

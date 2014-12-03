@@ -2,14 +2,18 @@ package com.devmite.rubik;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +23,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.devmite.rubik.database.MySQLiteHelper;
-import com.devmite.rubik.database.Record;
+import com.devmite.rubik.model.Record;
+import com.devmite.rubik.util.Stopwatch;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
+@SuppressLint("NewApi")
 public class PracticeActivity extends Activity implements OnClickListener {
 
 	final int MSG_START_TIMER = 0;
@@ -33,7 +42,115 @@ public class PracticeActivity extends Activity implements OnClickListener {
 
 	private boolean isStarted, isNext = false;
 	private ArrayList<Integer> arrayPos;
-	private int algoType = MySQLiteHelper.OLL /*TEMPORARY*/, algoNum;
+	private int algoType = MySQLiteHelper.OLL /* TEMPORARY */, algoNum;
+
+	public static final String MY_PREFERENCES = "my_prefs";
+	public static final String KEY_AD_INTERVAL = "ad_interval";
+	public static final int MAX_AD_INTERVAL = 2;
+
+	TextView minTextView, secTextView, miliTextView, separatorText,
+			separatorText2, algoScrambleText, algoSolveText, algoSolveTitle;
+	ImageView imageContent;
+	Button btnStartStop;
+
+	private static final int WAIT_TIME = 5000;
+
+	// Your interstitial ad unit ID.
+	private static final String AD_UNIT_ID = "ca-app-pub-9410555971413444/6629160418";
+
+	private InterstitialAd interstitial;
+	private Timer waitTimer;
+	private boolean interstitialLoaded = false;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_stopwatch);
+
+		SharedPreferences sharedPref = getSharedPreferences(MY_PREFERENCES,
+				Context.MODE_PRIVATE);
+
+		int count = sharedPref.getInt(KEY_AD_INTERVAL, 0);
+		if (count >= MAX_AD_INTERVAL) {
+			adSetup();
+		}
+
+		setNextCountAdInterval();
+
+		SharedPreferences sharedPrefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		boolean showSolving = sharedPrefs.getBoolean(
+				getResources().getString(R.string.show_solving), true);
+
+		Bundle extras = getIntent().getExtras();
+		arrayPos = (ArrayList<Integer>) extras.get(getResources().getString(
+				R.string.positions));
+		int[] arrayImg = extras.getIntArray("arrayImg");
+
+		String[] scramble = getResources().getStringArray(
+				R.array.algorithms_scramble);
+		String[] solve = getResources()
+				.getStringArray(R.array.algorithms_solve);
+
+		Random r = new Random();
+		int low = 0;
+		int high = arrayPos.size();
+		int rand = r.nextInt(high - low) + low;
+		algoNum = arrayPos.get(rand);
+
+		algoScrambleText = (TextView) findViewById(R.id.scrambleAlgoText);
+		algoScrambleText.setText(scramble[algoNum]);
+
+		imageContent = (ImageView) findViewById(R.id.imageContent);
+		imageContent.setImageResource(arrayImg[arrayPos.get(rand)]);
+
+		if (showSolving) {
+			algoSolveTitle = (TextView) findViewById(R.id.solveAlgoTitle);
+			algoSolveTitle.setText("Solve Algorithm");
+
+			algoSolveText = (TextView) findViewById(R.id.solveAlgoText);
+			algoSolveText.setText(solve[arrayPos.get(rand)]);
+		} else {
+			algoScrambleText.setTextSize(algoScrambleText.getTextSize() + 4);
+			imageContent.setVisibility(ImageView.GONE);
+		}
+
+		secTextView = (TextView) findViewById(R.id.timeSecond);
+		separatorText = (TextView) findViewById(R.id.separator);
+		minTextView = (TextView) findViewById(R.id.timeMin);
+		separatorText2 = (TextView) findViewById(R.id.separator2);
+		miliTextView = (TextView) findViewById(R.id.timeMili);
+
+		btnStartStop = (Button) findViewById(R.id.ButtonStartStop);
+		btnStartStop.setOnClickListener(this);
+
+	}
+
+	private void adSetup() {
+		interstitial = new InterstitialAd(this);
+		interstitial.setAdUnitId(AD_UNIT_ID);
+
+		// Create ad request.
+		AdRequest adRequest = new AdRequest.Builder().build();
+
+		// Begin loading your interstitial.
+		interstitial.loadAd(adRequest);
+
+		interstitial.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				interstitialLoaded = true;
+			}
+
+			@Override
+			public void onAdFailedToLoad(int errorCode) {
+				// The interstitial failed to load. Start the application.
+				Log.d("onAdFailedToLoad", "" + errorCode);
+			}
+		});
+
+	}
 
 	Handler mHandler = new Handler() {
 		@Override
@@ -83,70 +200,13 @@ public class PracticeActivity extends Activity implements OnClickListener {
 		}
 	};
 
-	TextView minTextView, secTextView, miliTextView, separatorText,
-			separatorText2, algoScrambleText, algoSolveText, algoSolveTitle;
-	ImageView imageContent;
-	Button btnStartStop;
-
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_stopwatch);
-
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		boolean showSolving = sharedPrefs.getBoolean(
-				getResources().getString(R.string.show_solving), true);
-
-		Bundle extras = getIntent().getExtras();
-		arrayPos = (ArrayList<Integer>) extras.get(getResources().getString(
-				R.string.positions));
-		int[] arrayImg = extras.getIntArray("arrayImg");
-
-		String[] scramble = getResources().getStringArray(
-				R.array.algorithms_scramble);
-		String[] solve = getResources()
-				.getStringArray(R.array.algorithms_solve);
-
-		Random r = new Random();
-		int low = 0;
-		int high = arrayPos.size();
-		int rand = r.nextInt(high - low) + low;
-		algoNum = arrayPos.get(rand);
-
-		algoScrambleText = (TextView) findViewById(R.id.scrambleAlgoText);
-		algoScrambleText.setText(scramble[algoNum]);
-
-		imageContent = (ImageView) findViewById(R.id.imageContent);
-		imageContent.setImageResource(arrayImg[arrayPos.get(rand)]);
-
-		if (showSolving) {
-			algoSolveTitle = (TextView) findViewById(R.id.solveAlgoTitle);
-			algoSolveTitle.setText("Solve Algorithm");
-
-			algoSolveText = (TextView) findViewById(R.id.solveAlgoText);
-			algoSolveText.setText(solve[arrayPos.get(rand)]);
-		} else {
-			algoScrambleText.setTextSize(algoScrambleText.getTextSize() + 4);
-			imageContent.setVisibility(ImageView.GONE);
-		}
-
-		secTextView = (TextView) findViewById(R.id.timeSecond);
-		separatorText = (TextView) findViewById(R.id.separator);
-		minTextView = (TextView) findViewById(R.id.timeMin);
-		separatorText2 = (TextView) findViewById(R.id.separator2);
-		miliTextView = (TextView) findViewById(R.id.timeMili);
-
-		btnStartStop = (Button) findViewById(R.id.ButtonStartStop);
-		btnStartStop.setOnClickListener(this);
-	}
-
 	public void onClick(View v) {
 		isStarted = !isStarted;
 
 		if (btnStartStop == v) {
 			if (isStarted) {
+				// after clicking "Next Random", go to the next random screen in
+				// the list of chosen algorithm(s)
 				if (isNext) {
 					String key = getResources().getString(R.string.positions);
 					Intent intent = new Intent(this, PracticeActivity.class);
@@ -182,6 +242,10 @@ public class PracticeActivity extends Activity implements OnClickListener {
 							R.drawable.oll_54, R.drawable.oll_55,
 							R.drawable.oll_56, R.drawable.oll_57 };
 
+					if (interstitialLoaded) {
+						interstitial.show();
+					}
+
 					intent.putExtra("arrayImg", arrayImg);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
@@ -207,7 +271,7 @@ public class PracticeActivity extends Activity implements OnClickListener {
 				Record rec = new Record(MySQLiteHelper.OLL, algoNum, timeValue,
 						timeLabel);
 				MySQLiteHelper sqlite = new MySQLiteHelper(this);
-				sqlite.addRecord(rec);
+				sqlite.insertRecord(rec);
 			}
 		}
 	}
@@ -242,73 +306,16 @@ public class PracticeActivity extends Activity implements OnClickListener {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/*
-	 * Copyright (c) 2005, Corey Goldberg
-	 * 
-	 * StopWatch.java is free software; you can redistribute it and/or modify it
-	 * under the terms of the GNU General Public License as published by the
-	 * Free Software Foundation; either version 2 of the License, or (at your
-	 * option) any later version.
-	 */
+	private void setNextCountAdInterval() {
+		SharedPreferences sharedPref = getSharedPreferences(MY_PREFERENCES,
+				Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPref.edit();
 
-	public class Stopwatch {
-		private long startTime = 0;
-		private boolean running = false;
-		private long currentTime = 0;
+		int count = sharedPref.getInt(KEY_AD_INTERVAL, 0);
+		count = count <= MAX_AD_INTERVAL ? count + 1 : 0;
+		editor.putInt(KEY_AD_INTERVAL, count);
+		editor.apply();
 
-		public void start() {
-			this.startTime = System.currentTimeMillis();
-			this.running = true;
-		}
-
-		public void stop() {
-			this.running = false;
-		}
-
-		public void pause() {
-			this.running = false;
-			currentTime = System.currentTimeMillis() - startTime;
-		}
-
-		public void resume() {
-			this.running = true;
-			this.startTime = System.currentTimeMillis() - currentTime;
-		}
-
-		// elaspsed time in milliseconds
-		public long getElapsedTimeMili() {
-			long elapsed = 0;
-			if (running) {
-				elapsed = ((System.currentTimeMillis() - startTime) / 10) % 100;
-			}
-			return elapsed;
-		}
-
-		// elaspsed time in seconds
-		public long getElapsedTimeSecs() {
-			long elapsed = 0;
-			if (running) {
-				elapsed = ((System.currentTimeMillis() - startTime) / 1000) % 60;
-			}
-			return elapsed;
-		}
-
-		// elaspsed time in minutes
-		public long getElapsedTimeMin() {
-			long elapsed = 0;
-			if (running) {
-				elapsed = (((System.currentTimeMillis() - startTime) / 1000) / 60) % 60;
-			}
-			return elapsed;
-		}
-
-		// elaspsed time in hours
-		public long getElapsedTimeHour() {
-			long elapsed = 0;
-			if (running) {
-				elapsed = ((((System.currentTimeMillis() - startTime) / 1000) / 60) / 60);
-			}
-			return elapsed;
-		}
 	}
+
 }

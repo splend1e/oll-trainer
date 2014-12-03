@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
 	}
 
@@ -142,20 +142,26 @@ public class MainActivity extends Activity {
 			i = new Intent(this, GraphActivity.class);
 			startActivity(i);
 			break;
+		case R.id.action_save_lesson:
+			
+			break;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	
-	  
-	private void actionNext() {
+	private void collectArrayPos() {
 		for (int i = 0; i < TOTAL_DATA; i++) {
 			if (listItems.get(i).isChecked()) {
 				arrayPos.add(i);
 			}
 		}
+	}
+	
+	  
+	private void actionNext() {
+		collectArrayPos();
 
 		if (arrayPos.isEmpty()) {
 			Toast.makeText(getApplicationContext(),

@@ -24,4 +24,10 @@
         android:orderInCategory="102"
         android:showAsAction="never"
         android:title="About Developer"/>
+    
+    <item
+        android:id="@+id/action_save_lesson"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+        android:title="Save Lesson"/>
 </menu>
