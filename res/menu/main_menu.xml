@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <item
         android:id="@+id/action_select_all"
         android:orderInCategory="100"
@@ -6,28 +7,33 @@
         android:title="@string/select_all"/>
     <item
         android:id="@+id/action_deselect_all"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:showAsAction="always"
         android:title="@string/deselect_all"/>
     <item
         android:id="@+id/action_next"
-        android:orderInCategory="100"
+        android:orderInCategory="102"
         android:showAsAction="never"
         android:title="@string/action_go"/>
     <item
+        android:id="@+id/action_save_lesson"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="Save as Lesson"/>
+    <item
+        android:id="@+id/action_load_lesson"
+        android:orderInCategory="104"
+        android:showAsAction="never"
+        android:title="Load a Lesson"/>
+    <item
         android:id="@+id/action_settings"
-        android:orderInCategory="101"
+        android:orderInCategory="105"
         android:showAsAction="never"
         android:title="Settings"/>
     <item
         android:id="@+id/action_about_dev"
-        android:orderInCategory="102"
+        android:orderInCategory="106"
         android:showAsAction="never"
         android:title="About Developer"/>
-    
-    <item
-        android:id="@+id/action_save_lesson"
-        android:orderInCategory="102"
-        android:showAsAction="never"
-        android:title="Save Lesson"/>
+
 </menu>

@@ -1,4 +1,4 @@
-package com.devmite.rubik;
+package com.devmite.rubik.activity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,9 +22,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.devmite.rubik.R;
+import com.devmite.rubik.R.array;
+import com.devmite.rubik.R.drawable;
+import com.devmite.rubik.R.id;
+import com.devmite.rubik.R.layout;
+import com.devmite.rubik.R.menu;
+import com.devmite.rubik.R.string;
 import com.devmite.rubik.database.MySQLiteHelper;
+import com.devmite.rubik.helper.Config;
+import com.devmite.rubik.helper.Stopwatch;
 import com.devmite.rubik.model.Record;
-import com.devmite.rubik.util.Stopwatch;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -44,23 +52,13 @@ public class PracticeActivity extends Activity implements OnClickListener {
 	private ArrayList<Integer> arrayPos;
 	private int algoType = MySQLiteHelper.OLL /* TEMPORARY */, algoNum;
 
-	public static final String MY_PREFERENCES = "my_prefs";
-	public static final String KEY_AD_INTERVAL = "ad_interval";
-	public static final int MAX_AD_INTERVAL = 2;
-
-	TextView minTextView, secTextView, miliTextView, separatorText,
+	private TextView minTextView, secTextView, miliTextView, separatorText,
 			separatorText2, algoScrambleText, algoSolveText, algoSolveTitle;
-	ImageView imageContent;
-	Button btnStartStop;
-
-	private static final int WAIT_TIME = 5000;
-
-	// Your interstitial ad unit ID.
-	private static final String AD_UNIT_ID = "ca-app-pub-9410555971413444/6629160418";
+	private ImageView imageContent;
+	private Button btnStartStop;
 
 	private InterstitialAd interstitial;
 	private Timer waitTimer;
-	private boolean interstitialLoaded = false;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -68,11 +66,11 @@ public class PracticeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stopwatch);
 
-		SharedPreferences sharedPref = getSharedPreferences(MY_PREFERENCES,
-				Context.MODE_PRIVATE);
+		SharedPreferences sharedPref = getSharedPreferences(
+				Config.MY_PREFERENCES, Context.MODE_PRIVATE);
 
-		int count = sharedPref.getInt(KEY_AD_INTERVAL, 0);
-		if (count >= MAX_AD_INTERVAL) {
+		int count = sharedPref.getInt(Config.KEY_AD_INTERVAL, 0);
+		if (count >= Config.MAX_AD_INTERVAL) {
 			adSetup();
 		}
 
@@ -129,18 +127,16 @@ public class PracticeActivity extends Activity implements OnClickListener {
 
 	private void adSetup() {
 		interstitial = new InterstitialAd(this);
-		interstitial.setAdUnitId(AD_UNIT_ID);
+		interstitial.setAdUnitId(Config.AD_UNIT_ID);
 
 		// Create ad request.
 		AdRequest adRequest = new AdRequest.Builder().build();
 
-		// Begin loading your interstitial.
-		interstitial.loadAd(adRequest);
-
 		interstitial.setAdListener(new AdListener() {
 			@Override
 			public void onAdLoaded() {
-				interstitialLoaded = true;
+				Log.d("onAdLoaded", "");
+				// interstitialLoaded = true;
 			}
 
 			@Override
@@ -150,6 +146,8 @@ public class PracticeActivity extends Activity implements OnClickListener {
 			}
 		});
 
+		// Begin loading your interstitial.
+		interstitial.loadAd(adRequest);
 	}
 
 	Handler mHandler = new Handler() {
@@ -242,13 +240,16 @@ public class PracticeActivity extends Activity implements OnClickListener {
 							R.drawable.oll_54, R.drawable.oll_55,
 							R.drawable.oll_56, R.drawable.oll_57 };
 
-					if (interstitialLoaded) {
-						interstitial.show();
-					}
-
 					intent.putExtra("arrayImg", arrayImg);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
+					
+					if (interstitial != null) {
+						if (interstitial.isLoaded()) {
+							interstitial.show();
+						}
+					}
+					
 				} else {
 					isNext = true;
 					mHandler.sendEmptyMessage(MSG_START_TIMER);
@@ -307,15 +308,14 @@ public class PracticeActivity extends Activity implements OnClickListener {
 	}
 
 	private void setNextCountAdInterval() {
-		SharedPreferences sharedPref = getSharedPreferences(MY_PREFERENCES,
-				Context.MODE_PRIVATE);
+		SharedPreferences sharedPref = getSharedPreferences(
+				Config.MY_PREFERENCES, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPref.edit();
 
-		int count = sharedPref.getInt(KEY_AD_INTERVAL, 0);
-		count = count <= MAX_AD_INTERVAL ? count + 1 : 0;
-		editor.putInt(KEY_AD_INTERVAL, count);
+		int count = sharedPref.getInt(Config.KEY_AD_INTERVAL, 0);
+		count = count <= Config.MAX_AD_INTERVAL ? count + 1 : 0;
+		editor.putInt(Config.KEY_AD_INTERVAL, count);
 		editor.apply();
-
 	}
 
 }

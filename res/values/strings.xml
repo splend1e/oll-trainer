@@ -18,7 +18,15 @@
     <string name="algo_num">ALGO_NUM</string>
     <string name="algo_type">ALGO_TYPE</string>
     
-
+    <string name="save_lesson_prompt">Do you want to save this current selection as a lesson?</string>
+	<string name="save_lesson">Save lesson</string>
+	<string name="lesson_saved">Lesson saved.</string>
+	<string name="load_lesson">Load a lesson</string>
+	
+	
+	<string name="OK">OK</string>
+	<string name="cancel">Cancel</string>
+	
     <string-array name="algorithms_solve">
         <item>R U2 [R2\' F R F\'] U2\' [R\' F R F\']</item>
         <item>[F R U R\' U\' F\'] [f R U R\' U\' f\']</item>

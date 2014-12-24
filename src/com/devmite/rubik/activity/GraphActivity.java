@@ -1,4 +1,4 @@
-package com.devmite.rubik;
+package com.devmite.rubik.activity;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -20,6 +20,12 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.devmite.rubik.R;
+import com.devmite.rubik.R.color;
+import com.devmite.rubik.R.id;
+import com.devmite.rubik.R.layout;
+import com.devmite.rubik.R.menu;
+import com.devmite.rubik.R.string;
 import com.devmite.rubik.database.MySQLiteHelper;
 import com.devmite.rubik.model.Record;
 import com.echo.holographlibrary.Bar;

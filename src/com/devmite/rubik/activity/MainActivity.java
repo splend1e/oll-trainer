@@ -1,9 +1,11 @@
-package com.devmite.rubik;
+package com.devmite.rubik.activity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -13,23 +15,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.devmite.rubik.R;
+import com.devmite.rubik.R.array;
+import com.devmite.rubik.R.drawable;
+import com.devmite.rubik.R.id;
+import com.devmite.rubik.R.layout;
+import com.devmite.rubik.R.menu;
+import com.devmite.rubik.R.string;
 import com.devmite.rubik.adapter.MainListAdapter;
+import com.devmite.rubik.dialog.LoadLessonDialog;
+import com.devmite.rubik.dialog.LoadLessonDialog.EditDialogListener;
+import com.devmite.rubik.dialog.SaveLessonDialog;
+import com.devmite.rubik.helper.Storage;
+import com.devmite.rubik.helper.Utils;
 import com.devmite.rubik.lib.FloatingActionButton;
 import com.devmite.rubik.model.ItemAlgorithm;
+import com.devmite.rubik.model.Lesson;
 
-public class MainActivity extends Activity {
-	final int TOTAL_DATA = 57;
-	ArrayList<Integer> arrayPos = new ArrayList<Integer>();
-	List<ItemAlgorithm> listItems = new ArrayList<ItemAlgorithm>();
-	int[] arrayImg;
-	MainListAdapter adapter;
-	
+public class MainActivity extends Activity implements EditDialogListener{
+	private final int TOTAL_DATA = 57;
+	private ArrayList<Integer> arrayPos = new ArrayList<Integer>();
+	private List<ItemAlgorithm> listItems = new ArrayList<ItemAlgorithm>();
+	private int[] arrayImg;
+	private MainListAdapter adapter;
+
 	private void populateData() {
 		String[] algorithms = getResources().getStringArray(
 				R.array.algorithms_solve);
@@ -68,24 +80,13 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		populateData();
-	
-		ListView listView = (ListView) findViewById(R.id.listview);
+
+		Storage.setContext(this);
+		
+		ListView listView = (ListView) findViewById(R.id.listview_main);
 
 		adapter = new MainListAdapter(this, listItems);
 		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				
-//				CheckBox cb = (CheckBox) view.findViewById(R.id.cb1);
-//				cb.setChecked(checked);
-				
-//				 ItemAlgorithm item = listItems.get(position);
-				// Toast.makeText(getApplicationContext(), ""+item.getDesc(),
-				// Toast.LENGTH_LONG).show();
-			}
-		});
 
 		FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
 				.withDrawable(getResources().getDrawable(R.drawable.go))
@@ -114,12 +115,12 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		Intent i;
-		
+
 		switch (item.getItemId()) {
 		case R.id.action_select_all:
 			selectAll();
@@ -127,23 +128,31 @@ public class MainActivity extends Activity {
 		case R.id.action_deselect_all:
 			deselectAll();
 			break;
+
 		case R.id.action_next:
 			actionNext();
 			return true;
 		case R.id.action_settings:
 			i = new Intent(this, UserSettingsActivity.class);
-            startActivityForResult(i, 1);
-            break;
+			startActivityForResult(i, 1);
+			break;
 		case R.id.action_about_dev:
 			i = new Intent(this, AboutDevActivity.class);
 			startActivity(i);
 			break;
-		case R.id.action_history:
-			i = new Intent(this, GraphActivity.class);
-			startActivity(i);
-			break;
 		case R.id.action_save_lesson:
-			
+			arrayPos = collectArrayPos();
+			if (arrayPos.isEmpty()) {
+				Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.please_choose),
+						Toast.LENGTH_LONG).show();
+			} else {
+				showSaveLessonDialog();
+			}
+			break;
+		case R.id.action_load_lesson:
+//			loadLesson();
+			showLoadLessonDialog();
 			break;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -151,18 +160,32 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void collectArrayPos() {
+	private ArrayList<Integer> collectArrayPos() {
+		ArrayList<Integer> arrInt = new ArrayList<Integer>();
 		for (int i = 0; i < TOTAL_DATA; i++) {
 			if (listItems.get(i).isChecked()) {
-				arrayPos.add(i);
+				arrInt.add(i);
 			}
 		}
+		return arrInt;
 	}
-	
-	  
-	private void actionNext() {
-		collectArrayPos();
 
+	private void selectAll() {
+		for (int i = 0; i < TOTAL_DATA; i++) {
+			listItems.get(i).setCb1(true);
+		}
+		adapter.notifyDataSetChanged();
+	}
+
+	private void deselectAll() {
+		for (int i = 0; i < TOTAL_DATA; i++) {
+			listItems.get(i).setCb1(false);
+		}
+		adapter.notifyDataSetChanged();
+	}
+
+	private void actionNext() {
+		arrayPos = collectArrayPos();
 		if (arrayPos.isEmpty()) {
 			Toast.makeText(getApplicationContext(),
 					getResources().getString(R.string.please_choose),
@@ -175,18 +198,90 @@ public class MainActivity extends Activity {
 			startActivity(intent);
 		}
 	}
+
+	/*-------------------LESSON RELATED METHODS STARTS HERE-------------------*/
+
+//	private void loadLesson() {
+//		MySQLiteHelper s = new MySQLiteHelper(this);
+//		List<Lesson> l = s.selectLessons();
+//		Lesson le = l.get(0);
+//		int[] selections = le.getContent();
+//		int count = 0;
+//
+//		for (int j = 0; j < TOTAL_DATA; j++) {
+//			if (count < selections.length) {
+//				if (selections[count] == j) {
+//					listItems.get(j).setCb1(true);
+//					count++;
+//				} else {
+//					listItems.get(j).setCb1(false);
+//				}
+//			} else {
+//				listItems.get(j).setCb1(false);
+//			}
+//		}
+//		adapter.notifyDataSetChanged();
+//	}
+
+	private void showLoadLessonDialog() {
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		
+		android.app.Fragment prev = getFragmentManager().findFragmentByTag(
+				"load");
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+		
+		DialogFragment newFragment = new LoadLessonDialog();
+		newFragment.show(ft,"load");
+	}
 	
-	private void selectAll() {
-		for (int i = 0; i < TOTAL_DATA; i++) {
-			listItems.get(i).setCb1(true);
+	private void showSaveLessonDialog() {
+		// DialogFragment.show() will take care of adding the fragment
+		// in a transaction. We also want to remove any currently showing
+		// dialog, so make our own transaction and take care of that here.
+		
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		android.app.Fragment prev = getFragmentManager().findFragmentByTag(
+				"save");
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+
+		// preparing data to be passed to the dialog
+		long timestamp = System.currentTimeMillis();
+		ArrayList<Integer> list = collectArrayPos();
+		int[] intArray = Utils.listToIntArray(list);
+
+		Lesson lesson = new Lesson("", intArray);
+
+		DialogFragment newFragment = SaveLessonDialog.newInstance(
+				String.valueOf(timestamp), lesson.getContentStringForShow(),
+				intArray);
+		newFragment.show(ft, "save");
+		
+	}
+
+	@Override
+	public void updateResult(Lesson le) {
+		int[] selections = le.getContent();
+		int count = 0;
+
+		for (int j = 0; j < TOTAL_DATA; j++) {
+			if (count < selections.length) {
+				if (selections[count] == j) {
+					listItems.get(j).setCb1(true);
+					count++;
+				} else {
+					listItems.get(j).setCb1(false);
+				}
+			} else {
+				listItems.get(j).setCb1(false);
+			}
 		}
 		adapter.notifyDataSetChanged();
 	}
-	
-	private void deselectAll() {
-		for (int i = 0; i < TOTAL_DATA; i++) {
-			listItems.get(i).setCb1(false);
-		}
-		adapter.notifyDataSetChanged();
-	}
+
 }

@@ -16,7 +16,7 @@ import com.devmite.rubik.model.Record;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	// Database Version
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 3;
 	// Database Name
 	private static final String DATABASE_NAME = "RecordDB";
 
@@ -57,16 +57,32 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 		db.execSQL(query);
 
-		query = "CREATE TABLE " + TABLE_LESSONS + " ( " + KEY_LESSON_ID
-				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_LESSON_NAME
-				+ " TEXT," + KEY_LESSON_CONTENT + " TEXT" + ")";
-
-		db.execSQL(query);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		dropRecords(db);
+
+		switch (newVersion) {
+
+		case 3:
+			createLessonTable();
+			// upgrade logic from version 2 to 3
+		case 4:
+			// upgrade logic from version 3 to 4
+			break;
+		default:
+			throw new IllegalStateException(
+					"onUpgrade() with unknown newVersion" + newVersion);
+		}
+
+	}
+	private void createLessonTable() {
+		String query = "CREATE TABLE IF NOT EXISTS " + TABLE_LESSONS + " ( "
+				+ KEY_LESSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+				+ KEY_LESSON_NAME + " TEXT," + KEY_LESSON_CONTENT + " TEXT"
+				+ ")";
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL(query);
 	}
 
 	public List<Record> selectRecords(int algoType, int algoNum) {
@@ -147,6 +163,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	public List<Lesson> selectLessons() {
+		createLessonTable();
+		
 		List<Lesson> lessons = new LinkedList<Lesson>();
 		// 1. build the query
 		String query = "SELECT * FROM " + TABLE_LESSONS + ";";
@@ -159,7 +177,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()) {
 			do {
 				lesson = new Lesson();
-				lesson.setId(Integer.parseInt(cursor.getString(0)));
+				lesson.setId(cursor.getInt(0));
 				lesson.setName(cursor.getString(1));
 				lesson.setContentFromString(cursor.getString(2));
 
@@ -175,6 +193,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	public void insertLesson(Lesson lesson) {
+		createLessonTable();
+		
 		Log.d("insertLesson", lesson.toString());
 
 		// 1. get reference to writable DB
@@ -183,7 +203,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		// 2. create ContentValues to add key "column"/value
 		ContentValues values = new ContentValues();
 		values.put(KEY_LESSON_NAME, lesson.getName());
-		values.put(KEY_LESSON_CONTENT, lesson.getContentString());
+		values.put(KEY_LESSON_CONTENT, lesson.getContentStringActual());
 
 		// 3. insert
 		db.insert(TABLE_LESSONS, // table
@@ -194,11 +214,20 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		// 4. close
 		db.close();
 	}
+	
+	public void deleteLesson(int lessonID) {
+		String query = "DELETE FROM " + TABLE_LESSONS + " WHERE "
+				+ KEY_LESSON_ID + "=" + lessonID + ";";
 
-//	public void updateLesson(Lesson oldLesson, Lesson newLesson) {
-//		// 1. get reference to writable DB
-//		SQLiteDatabase db = this.getWritableDatabase();
-//		db.up
-//	}
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL(query);
+		db.close();
+	}
+
+	// public void updateLesson(Lesson oldLesson, Lesson newLesson) {
+	// // 1. get reference to writable DB
+	// SQLiteDatabase db = this.getWritableDatabase();
+	// db.up
+	// }
 
 }

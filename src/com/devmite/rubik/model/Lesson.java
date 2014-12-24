@@ -40,27 +40,52 @@ public class Lesson {
 		this.content = content;
 	}
 	
-	public int[] setContentFromString(String contentString) {
-		String[] split = contentString.split(",");
-		int[] contentInt = new int[split.length];
-		
-		for (int i=0; i<split.length;i++){
-			contentInt[i] = Integer.parseInt(split[i]);
+	public void setContentFromString(String contentString) {
+		if (contentString != null && contentString.length()>0){
+			String[] split = contentString.split(",");
+			int[] contentInt = new int[split.length];
+			
+			for (int i=0; i<split.length;i++){
+				contentInt[i] = Integer.parseInt(split[i]);
+			}
+			content = contentInt;
 		}
-		return contentInt;
 	}
 	
-	public String getContentString() {
+	public String getContentStringActual() {
+		// 0-based
 		StringBuilder sb = new StringBuilder();
-		String result ="";
-		for (int i=0; i< content.length; i++){
-			sb.append(content);
-			sb.append(",");
+		if (content != null){
+			for (int i=0; i< content.length; i++){
+				sb.append(content[i]);
+				sb.append(",");
+			}
 		}
-		if (sb.length() > 0){
-			result = sb.substring(0, sb.length());
+		
+		String result = sb.toString();
+		
+		if (result.length() > 0){
+			result = result.substring(0, result.length()-1);
 		}
 		return result;
 	}
 	
+	public String getContentStringForShow() {
+		// This is for show only. It is 1-based
+		StringBuilder sb = new StringBuilder();
+		if (content != null){
+			for (int i=0; i< content.length; i++){
+				int show = content[i] + 1;
+				sb.append(show);
+				sb.append(",");
+			}
+		}
+		
+		String result = sb.toString();
+		
+		if (result.length() > 0){
+			result = result.substring(0, result.length()-1);
+		}
+		return result;
+	}
 }

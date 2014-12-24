@@ -1,6 +1,8 @@
-package com.devmite.rubik;
+package com.devmite.rubik.activity;
 
 import com.devmite.rubik.R;
+import com.devmite.rubik.R.id;
+import com.devmite.rubik.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;

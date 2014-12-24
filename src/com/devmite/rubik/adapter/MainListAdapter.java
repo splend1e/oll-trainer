@@ -21,7 +21,7 @@ public class MainListAdapter extends BaseAdapter {
 
 	private List<ItemAlgorithm> mList;
 	private LayoutInflater inflater;
-
+	
 	public MainListAdapter(Context context, List<ItemAlgorithm> mListe) {
 		inflater = LayoutInflater.from(context);
 		this.mList = mListe;

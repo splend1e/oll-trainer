@@ -1,6 +1,7 @@
-package com.devmite.rubik;
+package com.devmite.rubik.activity;
 
 import com.devmite.rubik.R;
+import com.devmite.rubik.R.xml;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

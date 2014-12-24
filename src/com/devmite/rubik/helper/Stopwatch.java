@@ -1,4 +1,4 @@
-package com.devmite.rubik.util;
+package com.devmite.rubik.helper;
 
 /*
  * Copyright (c) 2005, Corey Goldberg
